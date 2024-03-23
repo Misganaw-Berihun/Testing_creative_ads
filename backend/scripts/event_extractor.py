@@ -12,9 +12,9 @@ def extract_events(url):
         send_events = re.findall(send_event_pattern, js_content)
 
         print("First parameters from texts that start with 'SendEvent':")
-        events = []
+        events = set()
         for event in send_events:
-            events.append(event)
+            events.add(event)
         
         return events
 
