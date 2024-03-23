@@ -1,9 +1,14 @@
-import os
+import os, sys
 import json
 from sqlalchemy.orm import sessionmaker
 
 from tables import Game, RedirectURLs, ThirdPartyEngagement, TTDMetadata, Base
-from add_adunit import add_ad_unit
+
+rpath = os.path.abspath('..')
+if rpath not in sys.path:
+    sys.path.insert(0, rpath)
+
+from scripts.add_adunit import add_ad_unit
 from postgres_connect import create_database_engine
 
 def populate_ad_units(session, ad_units_data):

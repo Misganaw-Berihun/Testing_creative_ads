@@ -52,7 +52,7 @@ class TTDMetadata(Base):
     ttd_devicemake = Column(String(255))
     ttd_devicemodel = Column(String(255))
     ttd_gdpr_applies = Column(String(255))
-    ttd_gdpr_consent_string = Column(String(255))
+    ttd_gdpr_consent_strinG = Column(String(255))
     ttd_impressionid = Column(String(255))
     ttd_language = Column(String(255))
     ttd_metro = Column(String(255))
