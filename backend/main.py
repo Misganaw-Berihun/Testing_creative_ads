@@ -7,12 +7,21 @@ from sqlalchemy.orm import sessionmaker
 from pydantic import BaseModel
 from typing import List, Optional
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 from app import crud, models, schemas
 from scripts.event_extractor import extract_events
 
 load_dotenv(override=True)
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Adjust to match the origin of your frontend application
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
@@ -63,9 +72,10 @@ async def delete_adunit(game_id: str, game_version: str, db: Session = Depends(g
     return crud.delete_adunit(db, game_key)
 
 
-@app.post("/api/compare_events/")
+@app.post("/api/compare_events")
 async def compare_events(user_events: List[str], region: str, game_key: str):
     try:
+        print(user_events, region, game_key)
         url = f"https://s3.{region}.amazonaws.com/a.futureadlabs.com/games/{game_key}/game.js";
         events_set = extract_events(url)
         print("Events:", events_set)
