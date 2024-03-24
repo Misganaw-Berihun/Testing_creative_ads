@@ -83,5 +83,6 @@ async def compare_events(user_events: List[str], region: str, game_key: str):
         raise HTTPException(status_code=500, detail=f"Failed to extract events from {url}: {str(e)}")
 
     matched_events = [event for event in user_events if event in events_set]
+    unmatched_events = [event for event in user_events if event not in events_set]
 
-    return {"matched_events": matched_events}
+    return {"matched_events": matched_events, "unmatched_events": unmatched_events}

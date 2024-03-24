@@ -99,12 +99,13 @@ const events = [
 
 const EventsMatcher = ({ region, game_key }) => {
   const [matchedEvents, setMatchedEvents] = useState([]);
+  const [unmatchedEvents, setUnmatchedEvents] = useState([]);
 
   const handleSelectionChange = async (selectedEvents) => {
     try {
       console.log("selected events:", selectedEvents, region, game_key);
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/compare_events/",
+        "http://127.0.0.1:8000/api/compare_events",
         selectedEvents, 
         {
           params: {
@@ -115,6 +116,7 @@ const EventsMatcher = ({ region, game_key }) => {
       );
       console.log("Matched events:", response.data.matched_events);
       setMatchedEvents(response.data.matched_events);
+      setUnmatchedEvents(response.data.unmatched_events)
     } catch (error) {
       console.error("Error:", error);
     }
@@ -129,6 +131,17 @@ const EventsMatcher = ({ region, game_key }) => {
       <h2 className="text-lg font-bold mb-4">Matched Events:</h2>
       <div className="flex flex-wrap gap-2">
         {matchedEvents.map((event, index) => (
+          <span
+            key={index}
+            className="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm mr-2 mb-2"
+          >
+            {event}
+          </span>
+        ))}
+      </div>
+      <h2 className="text-lg font-bold mb-4">Unmatched Events:</h2>
+      <div className="flex flex-wrap gap-2">
+        {unmatchedEvents.map((event, index) => (
           <span
             key={index}
             className="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm mr-2 mb-2"

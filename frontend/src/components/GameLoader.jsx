@@ -23,12 +23,14 @@ const GameLoaderComponent = ({ setRegion, setGame_key }) => {
       };
     }
   }, [jsonFile]);
+  
+   
 
   return (
     <div>
       <JsonFileUploader setJsonFile={setJsonFile} />
       {jsonFile && (
-        <div>
+        <div >
           <h3>Uploaded JSON Data:</h3>
           <pre>{JSON.stringify(jsonFile, null, 2)}</pre>
         </div>
