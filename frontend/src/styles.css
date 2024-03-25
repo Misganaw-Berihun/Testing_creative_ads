@@ -1,0 +1,19 @@
+/* Example CSS to style the canvas element */
+#w8000909982 {
+    position: absolute;
+    top: 100;
+    left: 0;
+    /* Add more styling properties here */
+  }
+  
+
+  [id^="w"] {
+    background-color: lightblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 0%; 
+    margin-top: 10%;
+    position: relative;
+    top: 500;
+  }
