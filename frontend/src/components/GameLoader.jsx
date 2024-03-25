@@ -7,7 +7,7 @@ const GameLoaderComponent = ({ setRegion, setGame_key }) => {
   useEffect(() => {
     if (jsonFile) {
       const script = document.createElement("script");
-      script.src = "https://wat.adludio.com/loaders/cda/dsp_tester.js";
+      script.src = "dsp_tester.js";
       script.async = true;
       script.id = "gameLoaderScript";
 
@@ -30,9 +30,7 @@ const GameLoaderComponent = ({ setRegion, setGame_key }) => {
     <div>
       <JsonFileUploader setJsonFile={setJsonFile} />
       {jsonFile && (
-        <div >
-          <h3>Uploaded JSON Data:</h3>
-          <pre>{JSON.stringify(jsonFile, null, 2)}</pre>
+        <div style={{ width: "320px", height: "550px" }}>
         </div>
       )}
     </div>

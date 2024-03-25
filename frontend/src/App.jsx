@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>Testing Ad-units!</h1>
+      <h1 className="text-3xl font-bold mt-4 mb-4">Testing Ad-units!</h1>
       <div className="frame">
         <GameLoaderComponent setRegion={setRegion} setGame_key={setGame_key} />
       </div>
