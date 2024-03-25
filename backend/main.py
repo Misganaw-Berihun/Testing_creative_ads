@@ -1,12 +1,5 @@
-import os
 from fastapi import FastAPI, HTTPException, Depends, File, UploadFile
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from pydantic import BaseModel
 from typing import List, Optional
-from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
 from scripts.event_extractor import extract_events
@@ -15,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Adjust to match the origin of your frontend application
+    allow_origins=["http://localhost:5173"], 
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
